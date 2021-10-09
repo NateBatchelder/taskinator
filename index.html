@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <source src="./assets/style/style.css"><source>
-
+    <link rel="stylesheet" href="./assets/styles/style.css"><source>
     <title>Taskinator</title>
 </head>
 
 <body>
     <!-- nav bar -->
-    <heading>
-
-    </heading>
+    <header>
+        <h1 class="page-title">Taskinator</h1>
+        <p>Click the button below to add a new task!</p>
+        <button class="btn" >Add Task</button>
+    </header>
     
     <!-- main -->
-    <main>
+    <main class="page-content">
+        <section class="task-list-wrapper">
+            <h2 class="list-title">Task To Do</h2>
+                <ul class="task-list">
+                    <li class="task-item">
+                        A task is going to be added soon!
+                    </li>
+                </ul>
+        </section>
 
     </main>
     
     <!-- footer -->
     <footer>
-
+        &copy;2020 by Taskinator
+        Refactored by Nate Batchelder, MEd, NBCT
+        Forked Lightning, LLC
     </footer>
     
+    <script src="./assets/scripts/script.js"></script>
 </body>
-
-<script src="./assets/scripts/script.js"></script>
 </html>
