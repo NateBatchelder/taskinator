@@ -1,10 +1,26 @@
+var taskIdCounter = 0;
+
 var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
+var tasksInProgressEL = document.querySelector("#tasks-in-progress");
+var tasksCompletedEl = document.querySelector("#tasks-completed");
+var pageContentEl = document.querySelector("#page-content");
 
-var taskFormHandler = function(event) {
+// create array to hold tasks in progress for saving
+
+var tasks = [];
+
+var taskFormHandler = function (event) {
   event.preventDefault();
   var taskNameInput = document.querySelector("input[name='task-name']").value;
   var taskTypeInput = document.querySelector("select[name='task-type']").value;
+
+  // check if task name is empty
+  if (!taskNameInput || !taskTypeInput) {
+    alert("Please enter a task name and select a task type");
+    return false;
+  }
+  
 
   // package up data as an object
   var taskDataObj = {
