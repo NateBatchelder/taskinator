@@ -20,7 +20,55 @@ var taskFormHandler = function (event) {
     alert("Please enter a task name and select a task type");
     return false;
   }
-  
+
+  //reset form fields
+  document.querySelector("input[name='task-name']").value = "";
+  document.querySelector("select[name='task-type']").value = "";
+
+  // check if task is new or existing
+  if (isEdit) {
+    var taskId = formEl.getAttribute("data-task-id");
+  } else {
+    var taskDataObj = {
+      name: taskNameInput,
+      type: taskTypeInput,
+      status: "to-do",
+    };
+
+    createTaskEl(taskDataObj);
+  }
+};
+
+var createTaskEl = function (taskDataObj) {
+  var listItemEl = document.createElement("li");
+  listItemEl.className = "task-item";
+  listItemEl.setAttribute("data-task-id", taskIdCounter);
+
+  var taskInfoEl = document.createElement("div");
+  taskInfoEl.className = "task-info";
+  taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+  listItemEl.appendChild(taskInfoEl);
+
+  var taskActionsEL = createTaskActions(taskIdCounter);
+  listItemEl.appendChild(taskActionsEL);
+
+  switch (taskDataObj.status) {
+    case "to-do":
+      taskActionsEL.querySelector("select[name='status-change']").selectedIndex = 0;
+      taskToDoEl.append(listItemEl);
+      break;
+    case "in progress":
+      taskActionsEL.querySelector("select[name='status-change]']").selectedIndex = 1;
+      tasksInProgressEL.append(listItemEl);
+      break;
+    case "completed":
+      taskActionsEL.querySelector("select[name='status-change]']").selectedIndex = 2;
+      tasksCompletedEl.append(listItemEl);
+      break;
+    default:
+      console.log("SNAFU");
+  }
+
 
   // package up data as an object
   var taskDataObj = {
@@ -30,6 +78,7 @@ var taskFormHandler = function (event) {
 
   // send it as an argument to createTaskEl
   createTaskEl(taskDataObj);
+  }
 };
 
 var createTaskEl = function (taskDataObj) {
